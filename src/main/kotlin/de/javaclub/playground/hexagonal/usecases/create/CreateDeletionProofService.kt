@@ -6,7 +6,7 @@ import de.javaclub.playground.hexagonal.ports.driven.database.model.toDeletionPr
 import org.springframework.stereotype.Service
 
 @Service
-class DeletionProofService(
+class CreateDeletionProofService(
         private val deletionProofEntityRepository: DeletionProofEntityRepository) {
 
     fun createDeletionProof(command: CreateDeletionProofCommand): DeletionProof =

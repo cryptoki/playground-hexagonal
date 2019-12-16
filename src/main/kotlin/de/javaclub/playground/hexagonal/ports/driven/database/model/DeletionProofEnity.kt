@@ -22,8 +22,7 @@ data class DeletionProofEntity(
 
         @NotBlank
         @Size(max = 255)
-        val status: String) {
-}
+        val status: String)
 
 fun DeletionProofEntity.toDeletionProof() =
         DeletionProof(

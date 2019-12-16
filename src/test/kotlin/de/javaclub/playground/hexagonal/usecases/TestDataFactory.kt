@@ -1,9 +1,10 @@
-package de.javaclub.playground.hexagonal.usecases.create
+package de.javaclub.playground.hexagonal.usecases
 
 import de.javaclub.playground.hexagonal.domain.DeletionProof
 import de.javaclub.playground.hexagonal.domain.DeletionStatus
 import de.javaclub.playground.hexagonal.ports.driven.database.model.DeletionProofEntity
 import de.javaclub.playground.hexagonal.ports.driver.rest.CreateDeletionProofRequest
+import de.javaclub.playground.hexagonal.usecases.create.CreateDeletionProofCommand
 import java.util.*
 
 val ID: UUID = UUID.randomUUID()
@@ -19,7 +20,7 @@ fun aDeletionProof() =
 
 fun aDeletionProofEntity() =
         DeletionProofEntity(
-                id= ID.toString(),
+                id = ID.toString(),
                 referenceId = REFERENCE,
                 message = MESSAGE,
                 status = DeletionStatus.SUCCESSFUL.name)
@@ -42,3 +43,14 @@ fun aCreateDeletionProofCommand() =
                 referenceId = REFERENCE,
                 message = MESSAGE,
                 status = DeletionStatus.SUCCESSFUL)
+
+fun aRandomDeletionProofEntity(
+        id: String = UUID.randomUUID().toString(),
+        referenceId: String = UUID.randomUUID().toString(),
+        message: String = "bla bla",
+        status: String) =
+        DeletionProofEntity(
+                id = id,
+                referenceId = referenceId,
+                message = message,
+                status = status)

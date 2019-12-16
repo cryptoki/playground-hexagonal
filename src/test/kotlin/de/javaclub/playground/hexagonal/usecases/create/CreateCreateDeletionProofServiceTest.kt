@@ -2,6 +2,10 @@ package de.javaclub.playground.hexagonal.usecases.create
 
 import de.javaclub.playground.hexagonal.ports.driven.database.DeletionProofEntityRepository
 import de.javaclub.playground.hexagonal.test.any
+import de.javaclub.playground.hexagonal.usecases.aCreateDeletionProofCommand
+import de.javaclub.playground.hexagonal.usecases.aDeletionProof
+import de.javaclub.playground.hexagonal.usecases.aDeletionProofEntity
+import de.javaclub.playground.hexagonal.usecases.aDeletionProofEntityWithoutId
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -12,20 +16,20 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension
 
 @ExtendWith(MockitoExtension::class)
-internal class CreateDeletionProofServiceTest {
+internal class CreateCreateDeletionProofServiceTest {
 
     @Mock
     lateinit var deletionProofEntityRepository: DeletionProofEntityRepository
 
     @InjectMocks
-    lateinit var deletionProofService: DeletionProofService
+    lateinit var createDeletionProofService: CreateDeletionProofService
 
     @Test
     internal fun `should pass converted entity to repository`() {
 
         repositoryPersistsEntity()
 
-        deletionProofService.createDeletionProof(aCreateDeletionProofCommand())
+        createDeletionProofService.createDeletionProof(aCreateDeletionProofCommand())
 
         verify(deletionProofEntityRepository).save(aDeletionProofEntityWithoutId())
     }
@@ -35,7 +39,7 @@ internal class CreateDeletionProofServiceTest {
 
         repositoryPersistsEntity()
 
-        val deletionProof = deletionProofService.createDeletionProof(aCreateDeletionProofCommand())
+        val deletionProof = createDeletionProofService.createDeletionProof(aCreateDeletionProofCommand())
 
         assertThat(deletionProof).isEqualTo(aDeletionProof())
     }
@@ -44,5 +48,4 @@ internal class CreateDeletionProofServiceTest {
         doReturn(aDeletionProofEntity())
                 .`when`(deletionProofEntityRepository).save(any())
     }
-
 }

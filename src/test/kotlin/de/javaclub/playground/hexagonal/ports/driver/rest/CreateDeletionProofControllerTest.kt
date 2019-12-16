@@ -1,7 +1,11 @@
-package de.javaclub.playground.hexagonal.usecases.create
+package de.javaclub.playground.hexagonal.ports.driver.rest
 
-import de.javaclub.playground.hexagonal.ports.driver.rest.CreateDeletionProofController
 import de.javaclub.playground.hexagonal.test.any
+import de.javaclub.playground.hexagonal.usecases.ID
+import de.javaclub.playground.hexagonal.usecases.aCreateDeletionProofCommand
+import de.javaclub.playground.hexagonal.usecases.aCreateDeletionProofRequest
+import de.javaclub.playground.hexagonal.usecases.aDeletionProof
+import de.javaclub.playground.hexagonal.usecases.create.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -18,7 +22,7 @@ import java.net.URI
 class CreateDeletionProofControllerTest {
 
     @Mock
-    lateinit var deletionProofService: DeletionProofService
+    lateinit var createDeletionProofService: CreateDeletionProofService
 
     @InjectMocks
     lateinit var createDeletionProofController: CreateDeletionProofController
@@ -45,12 +49,12 @@ class CreateDeletionProofControllerTest {
                 fromUriString("http://localhost")
         )
 
-        verify(deletionProofService).createDeletionProof(aCreateDeletionProofCommand())
+        verify(createDeletionProofService).createDeletionProof(aCreateDeletionProofCommand())
     }
 
     private fun serviceReturnsPersistedDeletionProof() {
         doReturn(aDeletionProof())
-                .`when`(deletionProofService).createDeletionProof(any())
+                .`when`(createDeletionProofService).createDeletionProof(any())
     }
 
 }

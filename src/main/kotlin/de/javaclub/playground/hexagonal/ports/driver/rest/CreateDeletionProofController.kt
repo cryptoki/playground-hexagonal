@@ -2,7 +2,7 @@ package de.javaclub.playground.hexagonal.ports.driver.rest
 
 import de.javaclub.playground.hexagonal.domain.DeletionStatus
 import de.javaclub.playground.hexagonal.usecases.create.CreateDeletionProofCommand
-import de.javaclub.playground.hexagonal.usecases.create.DeletionProofService
+import de.javaclub.playground.hexagonal.usecases.create.CreateDeletionProofService
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.created
@@ -14,7 +14,7 @@ import javax.validation.Valid
 
 @RestController
 class CreateDeletionProofController(
-        private val deletionProofService: DeletionProofService
+        private val createDeletionProofService: CreateDeletionProofService
 ) {
 
     @PostMapping(value = ["/deletions"], consumes = [APPLICATION_JSON_VALUE])
@@ -22,7 +22,7 @@ class CreateDeletionProofController(
             @Valid @RequestBody deletionProofRequest: CreateDeletionProofRequest,
             ucBuilder: UriComponentsBuilder): ResponseEntity<Nothing> {
 
-        val deletionProof = deletionProofService.createDeletionProof(
+        val deletionProof = createDeletionProofService.createDeletionProof(
                 CreateDeletionProofCommand(
                         referenceId = deletionProofRequest.referenceId,
                         message = deletionProofRequest.message,
@@ -38,7 +38,7 @@ class CreateDeletionProofController(
             @Valid @RequestBody successful: CreateSuccessfulDeletionProofRequest,
             ucBuilder: UriComponentsBuilder): ResponseEntity<Nothing> {
 
-        val deletionProof = deletionProofService.createDeletionProof(
+        val deletionProof = createDeletionProofService.createDeletionProof(
                 CreateDeletionProofCommand(
                         referenceId = successful.referenceId,
                         message = successful.message,
@@ -51,11 +51,11 @@ class CreateDeletionProofController(
             @Valid @RequestBody failure: CreateFailureDeletionProofRequest,
             ucBuilder: UriComponentsBuilder): ResponseEntity<Nothing> {
 
-        val deletionProof = deletionProofService.createDeletionProof(
+        val deletionProof = createDeletionProofService.createDeletionProof(
                 CreateDeletionProofCommand(
                         referenceId = failure.referenceId,
                         message = failure.message,
-                        status = DeletionStatus.ERROR))
+                        status = DeletionStatus.FAILURE))
         return created(ucBuilder.path("/deletions/{id}").buildAndExpand(deletionProof.id).toUri()).build()
     }
 }

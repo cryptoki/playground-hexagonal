@@ -1,4 +1,4 @@
-package de.javaclub.playground.hexagonal.usecases.create
+package de.javaclub.playground.hexagonal.ports.driver.rest
 
 import org.hamcrest.Matchers.startsWith
 import org.junit.jupiter.api.Test
