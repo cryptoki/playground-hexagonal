@@ -7,5 +7,8 @@ data class CreateDeletionProofRequest(
         val message: String,
 
         @NotBlank
+        val referenceId: String,
+
+        @NotBlank
         val status: String
 )

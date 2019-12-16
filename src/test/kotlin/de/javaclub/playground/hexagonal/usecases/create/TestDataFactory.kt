@@ -7,30 +7,38 @@ import de.javaclub.playground.hexagonal.ports.driver.rest.CreateDeletionProofReq
 import java.util.*
 
 val ID: UUID = UUID.randomUUID()
+const val REFERENCE = "a reference"
 const val MESSAGE = "a message"
 
 fun aDeletionProof() =
         DeletionProof(
-                ID,
-                MESSAGE,
-                DeletionStatus.SUCCESSFUL)
+                id = ID,
+                referenceId = REFERENCE,
+                message = MESSAGE,
+                status = DeletionStatus.SUCCESSFUL)
 
 fun aDeletionProofEntity() =
         DeletionProofEntity(
-                ID.toString(),
-                MESSAGE,
-                DeletionStatus.SUCCESSFUL.name)
+                id= ID.toString(),
+                referenceId = REFERENCE,
+                message = MESSAGE,
+                status = DeletionStatus.SUCCESSFUL.name)
 
 fun aDeletionProofEntityWithoutId() =
         DeletionProofEntity(
-                null,
-                MESSAGE,
-                DeletionStatus.SUCCESSFUL.name)
+                referenceId = REFERENCE,
+                message = MESSAGE,
+                status = DeletionStatus.SUCCESSFUL.name)
 
 fun aCreateDeletionProofRequest() =
         CreateDeletionProofRequest(
-                MESSAGE,
-                DeletionStatus.SUCCESSFUL.name
+                referenceId = REFERENCE,
+                message = MESSAGE,
+                status = DeletionStatus.SUCCESSFUL.name
         )
 
-fun aCreateDeletionProofCommand() = CreateDeletionProofCommand(MESSAGE, DeletionStatus.SUCCESSFUL)
+fun aCreateDeletionProofCommand() =
+        CreateDeletionProofCommand(
+                referenceId = REFERENCE,
+                message = MESSAGE,
+                status = DeletionStatus.SUCCESSFUL)

@@ -15,7 +15,7 @@ class DeletionProofEntityRepositoryIT {
 
     @Test
     fun `it should find a persisted entity`() {
-        val persisted = aPersistedDeletionProof()
+        val persisted = aPersistedDeletionProofEntity()
 
         val result = deletionProofEntityRepository.findById(persisted.id!!)
 
@@ -23,6 +23,6 @@ class DeletionProofEntityRepositoryIT {
         assertThat(result.get().message).isEqualTo(MESSAGE)
     }
 
-    private fun aPersistedDeletionProof(): DeletionProofEntity =
+    private fun aPersistedDeletionProofEntity(): DeletionProofEntity =
             deletionProofEntityRepository.save(aDeletionProofEntity())
 }

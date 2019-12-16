@@ -26,6 +26,7 @@ class CreateDeletionProofIT {
                 .content(
                     """{
                           "message": "data from person xyz deleted.",
+                          "referenceId": "a reference",
                           "status": "SUCCESSFUL"
                        }""".trimIndent())
         )

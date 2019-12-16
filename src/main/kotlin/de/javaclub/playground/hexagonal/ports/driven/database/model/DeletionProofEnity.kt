@@ -11,7 +11,10 @@ import javax.validation.constraints.Size
 @Table("DELETION_PROOF")
 data class DeletionProofEntity(
         @Id
-        var id: String?,
+        var id: String? = null,
+
+        @NotBlank
+        val referenceId: String,
 
         @NotBlank
         @Size(max = 255)
@@ -25,6 +28,7 @@ data class DeletionProofEntity(
 fun DeletionProofEntity.toDeletionProof() =
         DeletionProof(
                 UUID.fromString(this.id),
+                this.referenceId,
                 this.message,
                 DeletionStatus.valueOf(status)
         )

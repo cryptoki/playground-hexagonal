@@ -4,5 +4,7 @@ import javax.validation.constraints.NotBlank
 
 data class CreateFailureDeletionProofRequest(
         @NotBlank
-        val message: String
+        val message: String,
+        @NotBlank
+        val referenceId: String
 )

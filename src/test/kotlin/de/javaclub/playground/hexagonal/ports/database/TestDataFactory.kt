@@ -4,7 +4,8 @@ import de.javaclub.playground.hexagonal.domain.DeletionStatus
 import de.javaclub.playground.hexagonal.ports.driven.database.model.DeletionProofEntity
 
 const val MESSAGE = "a message"
+const val REFERENCE = "an reference"
 val STATUS = DeletionStatus.SUCCESSFUL.name
 
 fun aDeletionProofEntity(): DeletionProofEntity =
-        DeletionProofEntity(id= null, message = MESSAGE, status = STATUS)
+        DeletionProofEntity(referenceId = REFERENCE, message = MESSAGE, status = STATUS)

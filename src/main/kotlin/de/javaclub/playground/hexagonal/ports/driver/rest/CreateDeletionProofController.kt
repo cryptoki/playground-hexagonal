@@ -24,8 +24,9 @@ class CreateDeletionProofController(
 
         val deletionProof = deletionProofService.createDeletionProof(
                 CreateDeletionProofCommand(
-                        deletionProofRequest.message,
-                        DeletionStatus.valueOf(deletionProofRequest.status)))
+                        referenceId = deletionProofRequest.referenceId,
+                        message = deletionProofRequest.message,
+                        status = DeletionStatus.valueOf(deletionProofRequest.status)))
         return created(ucBuilder.path("/deletions/{id}").buildAndExpand(deletionProof.id.toString()).toUri()).build()
     }
 
@@ -37,8 +38,11 @@ class CreateDeletionProofController(
             @Valid @RequestBody successful: CreateSuccessfulDeletionProofRequest,
             ucBuilder: UriComponentsBuilder): ResponseEntity<Nothing> {
 
-        val deletionProof = deletionProofService
-                .createDeletionProof(CreateDeletionProofCommand(successful.message, DeletionStatus.SUCCESSFUL))
+        val deletionProof = deletionProofService.createDeletionProof(
+                CreateDeletionProofCommand(
+                        referenceId = successful.referenceId,
+                        message = successful.message,
+                        status = DeletionStatus.SUCCESSFUL))
         return created(ucBuilder.path("/deletions/{id}").buildAndExpand(deletionProof.id).toUri()).build()
     }
 
@@ -47,8 +51,11 @@ class CreateDeletionProofController(
             @Valid @RequestBody failure: CreateFailureDeletionProofRequest,
             ucBuilder: UriComponentsBuilder): ResponseEntity<Nothing> {
 
-        val deletionProof = deletionProofService
-                .createDeletionProof(CreateDeletionProofCommand(failure.message, DeletionStatus.ERROR))
+        val deletionProof = deletionProofService.createDeletionProof(
+                CreateDeletionProofCommand(
+                        referenceId = failure.referenceId,
+                        message = failure.message,
+                        status = DeletionStatus.ERROR))
         return created(ucBuilder.path("/deletions/{id}").buildAndExpand(deletionProof.id).toUri()).build()
     }
 }
