@@ -1,0 +1,6 @@
+create table deletion_proof (
+  id varchar2(64),
+  message varchar2(256) not null,
+  status  varchar2(256) not null,
+  constraint pk_deletion_proof primary key (id)
+)
