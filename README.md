@@ -1,10 +1,14 @@
 # Hexagonal Architecture
 
-A kotlin and spring boot playground to speech / workshop. The knowledge based
-on the experience from different project and different flavour of the
+A kotlin and spring boot playground to a speech/workshop 
+"Hexagonal Architecture / Ports & Adapters and Domain Driven Design DDD"
+from december 2019. 
+
+The knowledge based on the experience from different project and different flavour of the
 'hexagonal' interpretation from different teams.
 
 I tried to focused on the naming and the structuring of the source. 
+
 
 The slides of the workshop are internal. I need to prepare new one.
 
