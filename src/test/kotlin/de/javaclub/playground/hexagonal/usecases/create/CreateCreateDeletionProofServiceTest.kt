@@ -1,5 +1,6 @@
 package de.javaclub.playground.hexagonal.usecases.create
 
+import de.javaclub.playground.hexagonal.ports.driven.DeletionProofRepositoryPort
 import de.javaclub.playground.hexagonal.ports.driven.database.DeletionProofEntityRepository
 import de.javaclub.playground.hexagonal.test.any
 import de.javaclub.playground.hexagonal.usecases.aCreateDeletionProofCommand
@@ -19,7 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 internal class CreateCreateDeletionProofServiceTest {
 
     @Mock
-    lateinit var deletionProofEntityRepository: DeletionProofEntityRepository
+    lateinit var deletionProofRepositoryPort: DeletionProofRepositoryPort
 
     @InjectMocks
     lateinit var createDeletionProofService: CreateDeletionProofService
@@ -31,7 +32,7 @@ internal class CreateCreateDeletionProofServiceTest {
 
         createDeletionProofService.createDeletionProof(aCreateDeletionProofCommand())
 
-        verify(deletionProofEntityRepository).save(aDeletionProofEntityWithoutId())
+        verify(deletionProofRepositoryPort).save(aCreateDeletionProofCommand())
     }
 
     @Test
@@ -45,7 +46,7 @@ internal class CreateCreateDeletionProofServiceTest {
     }
 
     private fun repositoryPersistsEntity() {
-        doReturn(aDeletionProofEntity())
-                .`when`(deletionProofEntityRepository).save(any())
+        doReturn(aDeletionProof())
+                .`when`(deletionProofRepositoryPort).save(any())
     }
 }

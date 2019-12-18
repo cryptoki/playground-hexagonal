@@ -4,6 +4,7 @@ A project to experiment with hexagonal architecture with Kotlin and Spring Boot.
 
 Especially focusing no naming and structuring of the source.
 
+
 ## Resources
 
 * [Christian Iwanzik: Hexagonale Architektur](https://www.javaland.eu/formes/pubfiles/11046614/2019-nn-christian_iwanzik-hexagonale_architektur_in_microservices-praesentation.pdf)
